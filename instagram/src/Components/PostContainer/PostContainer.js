@@ -14,16 +14,16 @@ const PostContainer = props => {
       <img src={props.dummyData.imageUrl} alt="Post" className="post-img" />
       <div className="icons">
         <div className="left-icons">
-          <p className="entypo-heart-empty"></p>
-          <p className="entypo-comment "></p>
+          <p className="entypo-heart-empty post-icon"></p>
+          <p className="entypo-comment post-icon"></p>
         </div>
         <div className="flex-end">
-          <p className="entypo-bookmark"></p>
+          <p className="entypo-bookmark post-icon"></p>
         </div>
       </div>
       <p>{props.dummyData.likes} likes</p>
       {props.dummyData.comments.map(data => <CommentSection key={uuid()} comment={data} />)}
-      <input className="post-input"></input>
+      <input className="post-input" placeholder="Add a comment..."></input>
     </div>
   )
 }

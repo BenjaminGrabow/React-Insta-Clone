@@ -38,6 +38,11 @@
   margin: 1rem;
 }
 
+.post-container {
+  border: .1rem solid lightgrey;
+  margin: 1rem;
+}
+
 .post-top {
   display: flex;
 }
@@ -66,7 +71,11 @@
   display: flex;
 }
 
+.post-icon {
+  margin: 1rem;
+}
+
 .post-input {
   width: 100%;
-  outline: none;
 }
+
