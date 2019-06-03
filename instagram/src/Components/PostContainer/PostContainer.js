@@ -1,10 +1,12 @@
 import React from 'react';
+import '../../App.css';
 import CommentSection from '../CommentSection/CommentSection';
 import pt from 'prop-types';
+import uuid from "uuid";
 
 const PostContainer = props => {
   return (
-    <div>
+    <div className="post-container">
       <div className="post-top">
         <img src={props.dummyData.thumbnailUrl} alt="Thumbnail" className="thumbnail" />
         <p className="username">{props.dummyData.username}</p>
@@ -20,7 +22,7 @@ const PostContainer = props => {
         </div>
       </div>
       <p>{props.dummyData.likes} likes</p>
-      <CommentSection dummyData={props.dummyData.comments} />
+      {props.dummyData.comments.map(data => <CommentSection key={uuid()} comment={data} />)}
       <input className="post-input"></input>
     </div>
   )
