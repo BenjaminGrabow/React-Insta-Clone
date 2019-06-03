@@ -3,22 +3,20 @@ import './App.css';
 import dummyData from './dummy-data';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       instaData: dummyData,
     }
-    console.log(this.state.instaData)
   }
 
   render() {
     return (
       <div className="App">
+        <SearchBar />
         {this.state.instaData.map(data =>
-          <div>
-            <SearchBar />
-            <PostContainer dummyData={this.state.instaData} />
-          </div>)}
+          <PostContainer dummyData={data} />
+        )}
       </div>
     );
   }
@@ -28,16 +26,12 @@ export default App;
 
 const PostContainer = props => {
   return (
-    <div>
-      {props.dummyData.map(data =>
-        <div key={data.id}>
-          <p>{data.username}</p>
-          <img src={data.thumbnailUrl} alt="Header" />
-          <img src={data.imageUrl} alt="Post" />
-          <p>{data.likes}</p>
-          <CommentSection dummyData={data.comments} />
-          <input />
-        </div>)}
+    <div key={props.dummyData.id}>
+      <p>{props.dummyData.username}</p>
+      <img src={props.dummyData.thumbnailUrl} alt="Header" />
+      <img src={props.dummyData.imageUrl} alt="Post" />
+      <p>{props.dummyData.likes}</p>
+      <CommentSection dummyData={props.dummyData.comments} />
     </div>
   )
 }
@@ -48,7 +42,7 @@ const CommentSection = props => {
       {
         props.dummyData.map(comment => {
           return (
-            <div key={comment.id}>
+            <div>
               <p>{comment.username}-{comment.text}</p>
             </div>
           )
@@ -61,10 +55,10 @@ const CommentSection = props => {
 
 const SearchBar = () => {
   return (
-  <div className="search-bar">
-    <p>Instagram</p>
-    <input placeholder="Search"></input>
-  </div>
+    <div className="search-bar">
+      <p>Instagram</p>
+      <input placeholder="Search"></input>
+    </div>
   )
 
 
