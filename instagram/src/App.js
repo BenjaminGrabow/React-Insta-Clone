@@ -1,40 +1,64 @@
 import React from 'react';
 import './App.css';
+import dummyData from './dummy-data';
 
-function App() {
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      instaData: dummyData,
+    }
+  }
+
+  render() {
   return (
     <div className="App">
-      <SearchBar></SearchBar>
-      <PostContainer></PostContainer>
-      <CommentSection></CommentSection>
+      {/* <SearchBarContainer></SearchBar>
+      <PostContainer></PostContainer> */}
+      {/* <CommentSectionContainer/> */}
+      {this.state.instaData.map(data => 
+        <div>
+          <PostContainer dummyData={this.state.instaData}/>
+        </div>)}
+     
+
+
     </div>
   );
+    }
 }
 
 export default App;
 
-function SearchBar() {
+const PostContainer = props => {
   return(
     <div>
-      
+    {props.dummyData.map(data => 
+      <div key={data.id}>
+        <p>{data.username}</p>
+        <img src={data.thumbnailUrl} alt="Header"/>
+        <img src={data.imageUrl} alt="Post"/>
+        <p>{data.likes}</p>
+        <CommentSection dummyData={data.comments} />
+      </div> )}
     </div>
   )
+
 }
 
-function PostContainer() {
-  return(
+const CommentSection = props => {
+  return (
     <div>
-      
+      {
+      props.dummyData.map(comment => {
+        return (
+          <div>
+            <p>{comment.username}-{comment.text}</p>
+           </div>
+        )
+      })
+    }
     </div>
+   
   )
 }
-
-function CommentSection() {
-  return(
-    <div>
-
-    </div>
-  )
-}
-
-
