@@ -2,7 +2,6 @@ import React from 'react';
 import pt from 'prop-types';
 import uuid from "uuid";
 
-
 const CommentSection = props => {
         console.log(props.dummyData)
         return (
@@ -23,9 +22,9 @@ const CommentSection = props => {
 
 CommentSection.propTypes = {
         comments: pt.arrayOf(pt.shape({
-            username: pt.string.isRequired,
-            text: pt.string.isRequired
+                username: pt.string.isRequired,
+                text: pt.string.isRequired
         }).isRequired)
-     }
+};
 
 export default CommentSection;

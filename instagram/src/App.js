@@ -18,7 +18,7 @@ class App extends React.Component {
       <div className="app">
         <SearchBar />
         {this.state.instaData.map(data =>
-          <PostContainer dummyData={data} key={uuid()}/>
+          <PostContainer dummyData={data} key={uuid()} />
         )}
       </div>
     );
