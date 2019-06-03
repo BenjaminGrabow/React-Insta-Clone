@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import dummyData from './dummy-data';
+import PropTypes from 'prop-types';
 
 class App extends React.Component {
   constructor() {
@@ -52,6 +53,13 @@ const CommentSection = props => {
     </div>
   )
 }
+
+CommentSection.propTypes = {
+  comment: PropTypes.shape({
+    text: PropTypes.string,
+    username: PropTypes.string
+  })
+};
 
 const SearchBar = () => {
   return (
