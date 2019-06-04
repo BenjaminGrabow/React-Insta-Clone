@@ -15,26 +15,28 @@ class App extends React.Component {
     }
   }
 
-  inputComment = (input) => {
+  inputComment = (event) => {
     this.setState({
-      addCommentInput: input
+      addCommentInput: event.target.value
     })
   };
 
-  addTheComment = (props) => {
+  addTheComment = (event, props) => {
     const copyOfArray = this.state.instaData;
 
-    console.log(props.dummyData.comments)
+   const filteredPersons = copyOfArray.filter(value => value.username !== props.dummyData.username)
 
     const filteredPerson = copyOfArray.filter(value => value.username === props.dummyData.username)
 
-    
-    const newComment = {username: "Joe Biden", text: this.state.addCommentInput};
-    
-    filteredPerson.map(value => value.comments.push(newComment));
-    
-    console.log(filteredPerson)
-    
+    const newComment = { username: "Joe Biden", text: this.state.addCommentInput };
+
+    if (event.key === "Enter") {
+      filteredPerson.map(value => value.comments.push(newComment));
+      this.setState({
+        instaData: filteredPerson.concat(filteredPersons),
+        addCommentInput: ""
+      })
+    }
   }
 
   changeSeachResult = (input) => {
@@ -75,8 +77,9 @@ class App extends React.Component {
           <PostContainer dummyData={data}
             key={uuid()}
             handleLike={this.makeLike}
-          commentChange={event => this.inputComment(event.target.value)}
-          addComment={this.addTheComment}
+            commentChange={this.inputComment}
+            addComment={this.addTheComment}
+            commentValue={this.state.addCommentInput}
           />
         )}
       </div>
