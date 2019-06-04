@@ -10,32 +10,7 @@ class App extends React.Component {
     super();
     this.state = {
       instaData: dummyData,
-      addCommentInput: "",
       searchInput: "",
-    }
-  }
-
-  inputComment = (event) => {
-    this.setState({
-      addCommentInput: event.target.value
-    })
-  };
-
-  addTheComment = (event, props) => {
-    const copyOfArray = this.state.instaData;
-
-   const filteredPersons = copyOfArray.filter(value => value.username !== props.dummyData.username)
-
-    const filteredPerson = copyOfArray.filter(value => value.username === props.dummyData.username)
-
-    const newComment = { username: "Joe Biden", text: this.state.addCommentInput };
-
-    if (event.key === "Enter") {
-      filteredPerson.map(value => value.comments.push(newComment));
-      this.setState({
-        instaData: filteredPerson.concat(filteredPersons),
-        addCommentInput: ""
-      })
     }
   }
 
@@ -77,9 +52,6 @@ class App extends React.Component {
           <PostContainer dummyData={data}
             key={uuid()}
             handleLike={this.makeLike}
-            commentChange={this.inputComment}
-            addComment={this.addTheComment}
-            commentValue={this.state.addCommentInput}
           />
         )}
       </div>

@@ -2,7 +2,6 @@ import React from 'react';
 import '../../App.css';
 import CommentSection from '../CommentSection/CommentSection';
 import pt from 'prop-types';
-import uuid from "uuid";
 
 const PostContainer = props => {
   return (
@@ -22,21 +21,7 @@ const PostContainer = props => {
         </div>
       </div>
       <p>{props.dummyData.likes} likes</p>
-      {props.dummyData.comments.map(data => 
-      <CommentSection
-       key={uuid()}
-        comment={data} />)}
-       
-      <input className="post-input"
-       placeholder="Add a comment..."
-        onChange={props.commentChange} 
-        key={uuid()}
-        id={uuid()}
-        onKeyPress={(event) => props.addComment(event, props)}
-        value={props.commentValue}
-        >
-        </input>
-        
+      <CommentSection comments={props.dummyData.comments} />  
     </div>
   )
 }
