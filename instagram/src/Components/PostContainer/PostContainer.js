@@ -14,7 +14,7 @@ const PostContainer = props => {
       <img src={props.dummyData.imageUrl} alt="Post" className="post-img" />
       <div className="icons">
         <div className="left-icons">
-          <p className="entypo-heart-empty post-icon"></p>
+          <p className="entypo-heart-empty post-icon" onClick={() => props.handleLike(props)}></p>
           <p className="entypo-comment post-icon"></p>
         </div>
         <div className="flex-end">
@@ -22,8 +22,18 @@ const PostContainer = props => {
         </div>
       </div>
       <p>{props.dummyData.likes} likes</p>
-      {props.dummyData.comments.map(data => <CommentSection key={uuid()} comment={data} />)}
-      <input className="post-input" placeholder="Add a comment..."></input>
+      {props.dummyData.comments.map(data => 
+      <CommentSection
+       key={uuid()}
+        comment={data} />)}
+      {/* <form onSubmit={props.addAFriend}> */}
+      <input className="post-input"
+       placeholder="Add a comment..."
+        // onChange={props.commentChange} 
+        // value={props.commentValue}
+        >
+        </input>
+      {/* </form> */}
     </div>
   )
 }
