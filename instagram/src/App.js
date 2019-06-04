@@ -14,6 +14,13 @@ class App extends React.Component {
     }
   }
 
+  componentWillMount() {
+    localStorage.getItem('instaData') && this.setState({
+      instaData: JSON.parse(localStorage.getItem('instaData'))
+    })
+
+  }
+
   changeSeachResult = (input) => {
     this.setState({
       searchInput: input
@@ -44,10 +51,17 @@ class App extends React.Component {
     this.setState({ instaData: result })
   };
 
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem('instaData', JSON.stringify(nextState.instaData));
+  }
+
   render() {
     return (
       <div className="app">
-        <SearchBar searchValue={this.state.searchInput} showSearch={this.showSearchResult} changeSearchInput={this.changeSeachResult} />
+        <SearchBar
+          searchValue={this.state.searchInput}
+          showSearch={this.showSearchResult}
+          changeSearchInput={this.changeSeachResult} />
         {this.state.instaData.map(data =>
           <PostContainer dummyData={data}
             key={uuid()}

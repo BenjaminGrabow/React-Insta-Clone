@@ -12,6 +12,13 @@ class CommentSection extends Component {
                 }
         }
 
+        componentWillMount() {
+                localStorage.getItem('comments') && this.setState({
+                  comments: JSON.parse(localStorage.getItem('comments'))
+                })
+            
+              }
+
         inputComment = (event) => {
                 this.setState({
                         addCommentInput: event.target.value
@@ -28,6 +35,10 @@ class CommentSection extends Component {
                         })
                 }
         }
+
+        componentWillUpdate(nextProps, nextState) {
+                localStorage.setItem('comments', JSON.stringify(nextState.comments));
+              }
 
         render() {
                 return (
