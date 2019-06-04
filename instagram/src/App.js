@@ -18,8 +18,7 @@ class App extends React.Component {
     localStorage.getItem('instaData') && this.setState({
       instaData: JSON.parse(localStorage.getItem('instaData'))
     })
-
-  }
+  };
 
   changeSeachResult = (input) => {
     this.setState({
@@ -40,15 +39,15 @@ class App extends React.Component {
   makeLike = (props) => {
     const copyOfArray = this.state.instaData;
 
-    const filteredCopyWithoutTarget = copyOfArray.filter(copy => copy.imageUrl !== props.dummyData.imageUrl);
+    const indexOfTarget = copyOfArray.indexOf(props.dummyData);
 
-    const filteredCopyWithTarget = copyOfArray.filter(copy => copy.imageUrl === props.dummyData.imageUrl);
+    const oneLikeMore = copyOfArray[indexOfTarget].likes + 1;
 
-    filteredCopyWithTarget.map(value => value.likes += 1);
+    copyOfArray[indexOfTarget].likes = oneLikeMore;
 
-    const result = filteredCopyWithoutTarget.concat(filteredCopyWithTarget);
-
-    this.setState({ instaData: result })
+    this.setState({
+      instaData: copyOfArray
+    })
   };
 
   componentWillUpdate(nextProps, nextState) {
