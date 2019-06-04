@@ -10,7 +10,7 @@ const SearchBar = props => {
                                 <img className="insta-picture" src={logo} alt="insta-logo" />
                         </div>
 
-                        <input placeholder="Search" value={props.searchValue} onKeyPress={() => props.showSearch(props)} onChange={event => props.changeSearchInput(event.target.value)}></input>
+                        <input placeholder="Search" value={props.searchValue} onKeyPress={() => props.showSearch()} onChange={event => props.changeSearchInput(event.target.value)}></input>
 
                         <div className="right-header">
                                 <p className="entypo-heart-empty header-icon"></p>

@@ -10,28 +10,40 @@ class App extends React.Component {
     super();
     this.state = {
       instaData: dummyData,
-      addFriendInput: "",
+      addCommentInput: "",
       searchInput: "",
     }
   }
 
-  // inputComment = (input) => {
-  //   this.setState({
-  //     addFriendInput: input
-  //   })
-  // }
+  inputComment = (input) => {
+    this.setState({
+      addCommentInput: input
+    })
+  };
 
-  // addFriend = (event) => {
-  //   console.log(event)
-  // }
+  addTheComment = (props) => {
+    const copyOfArray = this.state.instaData;
+
+    console.log(props.dummyData.comments)
+
+    const filteredPerson = copyOfArray.filter(value => value.username === props.dummyData.username)
+
+    
+    const newComment = {username: "Joe Biden", text: this.state.addCommentInput};
+    
+    filteredPerson.map(value => value.comments.push(newComment));
+    
+    console.log(filteredPerson)
+    
+  }
 
   changeSeachResult = (input) => {
     this.setState({
       searchInput: input
     })
-  }
+  };
 
-  showSearchResult = (props) => {
+  showSearchResult = () => {
     const copyOfArray = this.state.instaData;
 
     const searchedItem = copyOfArray.filter(copy => copy.username.toLocaleLowerCase().startsWith(this.state.searchInput.toLocaleLowerCase()));
@@ -39,10 +51,9 @@ class App extends React.Component {
     this.setState({
       instaData: searchedItem,
     })
-  }
+  };
 
   makeLike = (props) => {
-
     const copyOfArray = this.state.instaData;
 
     const filteredCopyWithoutTarget = copyOfArray.filter(copy => copy.imageUrl !== props.dummyData.imageUrl);
@@ -54,7 +65,7 @@ class App extends React.Component {
     const result = filteredCopyWithoutTarget.concat(filteredCopyWithTarget);
 
     this.setState({ instaData: result })
-  }
+  };
 
   render() {
     return (
@@ -64,9 +75,8 @@ class App extends React.Component {
           <PostContainer dummyData={data}
             key={uuid()}
             handleLike={this.makeLike}
-          // commentValue={this.state.addFriendInput}
-          // commentChange={event => this.inputComment(event.target.value)}
-          // addAFriend={(event) => this.addFriend(event)}
+          commentChange={event => this.inputComment(event.target.value)}
+          addComment={this.addTheComment}
           />
         )}
       </div>

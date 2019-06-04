@@ -26,14 +26,15 @@ const PostContainer = props => {
       <CommentSection
        key={uuid()}
         comment={data} />)}
-      {/* <form onSubmit={props.addAFriend}> */}
+        <form>
       <input className="post-input"
        placeholder="Add a comment..."
-        // onChange={props.commentChange} 
-        // value={props.commentValue}
+        onChange={props.commentChange} 
+        key={uuid()}
+        onClick={() => props.addComment(props)}
         >
         </input>
-      {/* </form> */}
+        </form>
     </div>
   )
 }
