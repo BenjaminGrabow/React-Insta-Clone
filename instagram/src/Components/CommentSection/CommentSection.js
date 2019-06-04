@@ -14,10 +14,10 @@ class CommentSection extends Component {
 
         componentWillMount() {
                 localStorage.getItem('comments') && this.setState({
-                  comments: JSON.parse(localStorage.getItem('comments'))
+                        comments: JSON.parse(localStorage.getItem('comments'))
                 })
-            
-              }
+
+        }
 
         inputComment = (event) => {
                 this.setState({
@@ -36,18 +36,28 @@ class CommentSection extends Component {
                 }
         }
 
+        deleteComment = (event) => {
+                const copyOfComments = this.state.comments;
+
+                this.setState({
+                        comments: copyOfComments.filter(val => val.text !== event.target.textContent)
+                })
+        }
+
         componentWillUpdate(nextProps, nextState) {
                 localStorage.setItem('comments', JSON.stringify(nextState.comments));
-              }
+        }
 
         render() {
                 return (
                         <div>
                                 {this.state.comments.map(comment =>
-                                        <p key={uuid()}>
+                                        <p key={uuid()}
+                                                id={uuid()}
+                                                onClick={event => this.deleteComment(event)}>
                                                 {comment.username}
                                                 -
-                                        {comment.text}
+                                        <span>{comment.text}</span>
                                         </p>)}
 
                                 <input className="post-input"
