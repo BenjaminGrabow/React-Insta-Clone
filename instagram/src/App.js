@@ -3,10 +3,10 @@ import './App.css';
 import dummyData from './dummy-data';
 import withAuthenticate from './Components/Authentication/withAuthenticate';
 import PostPage from './Components/PostPage/PostPage';
-import LoginPgae from './Components/LoginPage/LoginPage';
+import LoginPage from './Components/LoginPage/LoginPage';
 
 
-const ComponentFromWithAuthenticate = withAuthenticate(PostPage);
+const ComponentFromWithAuthenticate = withAuthenticate(PostPage, LoginPage);
 
 class App extends React.Component {
   constructor() {
@@ -60,7 +60,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <PostPage
+        <ComponentFromWithAuthenticate
           searcherValue={this.state.searchInput}
           showTheSearchResult={this.showSearchResult}
           changeTheSeachResult={this.changeSeachResult}

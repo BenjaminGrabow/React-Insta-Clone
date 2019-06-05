@@ -1,31 +1,21 @@
 import React from 'react';
 
-function withAuthenticate(Component) {
-  return class extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        isAuthed: false
+function withAuthenticate(ComponentOne, ComponentTwo) {
+    return class extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          userName: "",
+        }
+      }
+
+      render() {
+        return (
+          this.state.userName === "" ? <ComponentOne {...this.props} /> : <ComponentTwo {...this.props}/>
+        )
       }
     }
-    componentDidMount() {
-      const isAuthed = !!localStorage.getItem('isAuthed');
-      this.setState({ isAuthed });
-    }
-
-    componentDidUpdate() {
-      const isAuthed = !!localStorage.getItem('isAuthed');
-      if (this.state.isAuthed !== isAuthed) {
-        this.setState({ isAuthed });
-      }
-    }
-
-    render() {
-      return(
-        <Component isAuthed={this.state.isAuthed} />
-      )
-    }
-  }
+  
 }
 
 export default withAuthenticate;
