@@ -20,11 +20,14 @@ class App extends React.Component {
     }
   }
 
-  // componentWillMount() {
-  //   localStorage.getItem('instaData') && this.setState({
-  //     instaData: JSON.parse(localStorage.getItem('instaData'))
-  //   })
-  // };
+  componentWillMount() {
+    localStorage.getItem('username') && this.setState({
+      username: JSON.parse(localStorage.getItem('username'))
+    })
+    localStorage.getItem('password') && this.setState({
+      password: JSON.parse(localStorage.getItem('password'))
+    })
+  };
 
   changeSeachResult = (input) => {
     this.setState({
@@ -72,9 +75,10 @@ class App extends React.Component {
     }
   }
 
-  // componentWillUpdate(nextProps, nextState) {
-  //   localStorage.setItem('instaData', JSON.stringify(nextState.instaData));
-  // }
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem('username', JSON.stringify(nextState.username));
+    localStorage.setItem('password', JSON.stringify(nextState.password));
+  }
 
   render() {
     return (
