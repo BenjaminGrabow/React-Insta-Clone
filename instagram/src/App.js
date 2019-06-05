@@ -16,6 +16,7 @@ class App extends React.Component {
       searchInput: "",
       username: "",
       password: "",
+      postPageCounter: "",
     }
   }
 
@@ -56,7 +57,19 @@ class App extends React.Component {
   };
 
   changePassword = (event) => {
-this.setState({password: event.target.value})
+    this.setState({ password: event.target.value })
+  }
+
+  changeUsername = (event) => {
+    this.setState({ username: event.target.value })
+  }
+
+  goToPostPage = () => {
+    if(this.state.username.length > 5 && this.state.password.length > 5 ) {
+      this.setState({
+        postPageCounter: "dsgsdfg"
+      })
+    }
   }
 
   // componentWillUpdate(nextProps, nextState) {
@@ -73,7 +86,12 @@ this.setState({password: event.target.value})
           theData={this.state.instaData}
           makeALike={this.makeLike}
           thePassword={event => this.changePassword(event)}
-          password={this.state.password} />
+          theUsername={event => this.changeUsername(event)}
+          password={this.state.password}
+          username={this.state.username}
+          toPostpage={this.goToPostPage}
+          counter={this.state.postPageCounter}
+        />
       </div>
     );
   }

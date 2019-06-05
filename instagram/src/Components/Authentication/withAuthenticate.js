@@ -11,7 +11,7 @@ function withAuthenticate(ComponentOne, ComponentTwo) {
 
       render() {
         return (
-          this.props.password === "" ? <ComponentOne {...this.props} /> : <ComponentTwo {...this.props} />
+          this.props.counter === "" ? <ComponentOne {...this.props} /> : <ComponentTwo {...this.props} />
         )
       }
     }
