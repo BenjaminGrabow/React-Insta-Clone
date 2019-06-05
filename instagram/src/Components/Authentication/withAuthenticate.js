@@ -5,13 +5,13 @@ function withAuthenticate(ComponentOne, ComponentTwo) {
       constructor(props) {
         super(props);
         this.state = {
-          userName: "",
+        password: "",
         }
       }
 
       render() {
         return (
-          this.state.userName === "" ? <ComponentOne {...this.props} /> : <ComponentTwo {...this.props}/>
+          this.props.password === "" ? <ComponentOne {...this.props} /> : <ComponentTwo {...this.props} />
         )
       }
     }

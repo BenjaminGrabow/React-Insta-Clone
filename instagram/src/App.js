@@ -6,7 +6,7 @@ import PostPage from './Components/PostPage/PostPage';
 import LoginPage from './Components/LoginPage/LoginPage';
 
 
-const ComponentFromWithAuthenticate = withAuthenticate(PostPage, LoginPage);
+const ComponentFromWithAuthenticate = withAuthenticate(LoginPage, PostPage);
 
 class App extends React.Component {
   constructor() {
@@ -14,6 +14,8 @@ class App extends React.Component {
     this.state = {
       instaData: dummyData,
       searchInput: "",
+      username: "",
+      password: "",
     }
   }
 
@@ -53,6 +55,10 @@ class App extends React.Component {
     })
   };
 
+  changePassword = (event) => {
+this.setState({password: event.target.value})
+  }
+
   // componentWillUpdate(nextProps, nextState) {
   //   localStorage.setItem('instaData', JSON.stringify(nextState.instaData));
   // }
@@ -65,7 +71,9 @@ class App extends React.Component {
           showTheSearchResult={this.showSearchResult}
           changeTheSeachResult={this.changeSeachResult}
           theData={this.state.instaData}
-          makeALike={this.makeLike} />
+          makeALike={this.makeLike}
+          thePassword={event => this.changePassword(event)}
+          password={this.state.password} />
       </div>
     );
   }
