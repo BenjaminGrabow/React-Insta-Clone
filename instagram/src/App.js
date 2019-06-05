@@ -3,7 +3,12 @@ import './App.css';
 import dummyData from './dummy-data';
 import PostContainer from './Components/PostContainer/PostContainer';
 import SearchBar from './Components/SearchBar/SearchBar';
+import withAuthenticate from './Components/Authentication/withAuthenticate';
 import uuid from "uuid";
+import PostPage from './Components/PostPage/PostPage'
+
+
+const ComponentFromWithAuthenticate = withAuthenticate(PostContainer);
 
 class App extends React.Component {
   constructor() {
@@ -57,16 +62,12 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <SearchBar
-          searchValue={this.state.searchInput}
-          showSearch={this.showSearchResult}
-          changeSearchInput={this.changeSeachResult} />
-        {this.state.instaData.map(data =>
-          <PostContainer dummyData={data}
-            key={uuid()}
-            handleLike={this.makeLike}
-          />
-        )}
+        <PostPage
+          searcherValue={this.state.searchInput}
+          showTheSearchResult={this.showSearchResult}
+          changeTheSeachResult={this.changeSeachResult}
+          theData={this.state.instaData}
+          makeALike={this.makeLike} />
       </div>
     );
   }

@@ -30,7 +30,7 @@ class CommentSection extends Component {
 
                 if (event.key === "Enter") {
                         this.setState({
-                                comments: this.state.comments.concat(newComment),
+                                comments: [newComment].concat(this.state.comments),
                                 addCommentInput: ""
                         })
                 }

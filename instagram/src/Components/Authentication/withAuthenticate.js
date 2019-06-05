@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from 'react-dom';
 
 function withAuthenticate(Component) {
   return class extends React.Component {
@@ -28,3 +27,5 @@ function withAuthenticate(Component) {
     }
   }
 }
+
+export default withAuthenticate;
