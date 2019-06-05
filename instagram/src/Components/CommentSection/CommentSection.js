@@ -12,12 +12,12 @@ class CommentSection extends Component {
                 }
         }
 
-        componentWillMount() {
-                localStorage.getItem('comments') && this.setState({
-                        comments: JSON.parse(localStorage.getItem('comments'))
-                })
+        // componentWillMount() {
+        //         localStorage.getItem('comments') && this.setState({
+        //                 comments: JSON.parse(localStorage.getItem('comments'))
+        //         })
 
-        }
+        // }
 
         inputComment = (event) => {
                 this.setState({
@@ -44,9 +44,9 @@ class CommentSection extends Component {
                 })
         }
 
-        componentWillUpdate(nextProps, nextState) {
-                localStorage.setItem('comments', JSON.stringify(nextState.comments));
-        }
+        // componentWillUpdate(nextProps, nextState) {
+        //         localStorage.setItem('comments', JSON.stringify(nextState.comments));
+        // }
 
         render() {
                 return (
@@ -54,7 +54,8 @@ class CommentSection extends Component {
                                 {this.state.comments.map(comment =>
                                         <p key={uuid()}
                                                 id={uuid()}
-                                                onClick={event => this.deleteComment(event)}>
+                                                onClick={event => this.deleteComment(event)}
+                                                >
                                                 {comment.username}
                                                 -
                                         <span>{comment.text}</span>

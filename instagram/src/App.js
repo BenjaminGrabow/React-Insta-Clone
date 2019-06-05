@@ -14,11 +14,11 @@ class App extends React.Component {
     }
   }
 
-  componentWillMount() {
-    localStorage.getItem('instaData') && this.setState({
-      instaData: JSON.parse(localStorage.getItem('instaData'))
-    })
-  };
+  // componentWillMount() {
+  //   localStorage.getItem('instaData') && this.setState({
+  //     instaData: JSON.parse(localStorage.getItem('instaData'))
+  //   })
+  // };
 
   changeSeachResult = (input) => {
     this.setState({
@@ -50,9 +50,9 @@ class App extends React.Component {
     })
   };
 
-  componentWillUpdate(nextProps, nextState) {
-    localStorage.setItem('instaData', JSON.stringify(nextState.instaData));
-  }
+  // componentWillUpdate(nextProps, nextState) {
+  //   localStorage.setItem('instaData', JSON.stringify(nextState.instaData));
+  // }
 
   render() {
     return (
