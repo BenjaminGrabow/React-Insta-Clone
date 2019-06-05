@@ -25,7 +25,7 @@ class CommentSection extends Component {
         };
 
         addTheComment = (event) => {
-                const newComment = { username: "Joe Biden", text: this.state.addCommentInput };
+                const newComment = { username: localStorage.getItem("username").slice(1, -1), text: this.state.addCommentInput };
 
                 if (event.key === "Enter") {
                         this.setState({
