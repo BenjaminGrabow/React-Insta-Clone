@@ -6,7 +6,7 @@ import '../../App.css';
 
 const PostPage = (props) => {
         return (
-                <div>
+                <div className="inside-app">
                         <SearchBar
           searchValue={props.searcherValue}
           showSearch={props.showTheSearchResult}

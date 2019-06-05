@@ -1,14 +1,12 @@
 import React from 'react';
 import './App.css';
 import dummyData from './dummy-data';
-import PostContainer from './Components/PostContainer/PostContainer';
-import SearchBar from './Components/SearchBar/SearchBar';
 import withAuthenticate from './Components/Authentication/withAuthenticate';
-import uuid from "uuid";
-import PostPage from './Components/PostPage/PostPage'
+import PostPage from './Components/PostPage/PostPage';
+import LoginPgae from './Components/LoginPage/LoginPage';
 
 
-const ComponentFromWithAuthenticate = withAuthenticate(PostContainer);
+const ComponentFromWithAuthenticate = withAuthenticate(PostPage);
 
 class App extends React.Component {
   constructor() {
