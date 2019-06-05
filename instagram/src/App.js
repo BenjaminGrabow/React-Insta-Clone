@@ -24,8 +24,13 @@ class App extends React.Component {
     localStorage.getItem('username') && this.setState({
       username: JSON.parse(localStorage.getItem('username'))
     })
+
     localStorage.getItem('password') && this.setState({
       password: JSON.parse(localStorage.getItem('password'))
+    })
+
+    localStorage.getItem('postPageCounter') && this.setState({
+      postPageCounter: JSON.parse(localStorage.getItem('postPageCounter'))
     })
   };
 
@@ -68,7 +73,7 @@ class App extends React.Component {
   }
 
   goToPostPage = () => {
-    if(this.state.username.length > 5 && this.state.password.length > 5 ) {
+    if (this.state.username.length > 5 && this.state.password.length > 5) {
       this.setState({
         postPageCounter: "dsgsdfg"
       })
@@ -77,7 +82,10 @@ class App extends React.Component {
 
   componentWillUpdate(nextProps, nextState) {
     localStorage.setItem('username', JSON.stringify(nextState.username));
+
     localStorage.setItem('password', JSON.stringify(nextState.password));
+
+    localStorage.setItem('postPageCounter', JSON.stringify(nextState.postPageCounter));
   }
 
   render() {
@@ -91,8 +99,6 @@ class App extends React.Component {
           makeALike={this.makeLike}
           thePassword={event => this.changePassword(event)}
           theUsername={event => this.changeUsername(event)}
-          password={this.state.password}
-          username={this.state.username}
           toPostpage={this.goToPostPage}
           counter={this.state.postPageCounter}
         />

@@ -16,7 +16,6 @@ class CommentSection extends Component {
         //         localStorage.getItem('comments') && this.setState({
         //                 comments: JSON.parse(localStorage.getItem('comments'))
         //         })
-
         // }
 
         inputComment = (event) => {
