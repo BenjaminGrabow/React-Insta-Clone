@@ -80,7 +80,7 @@ class App extends React.Component {
 
   goToPostPage = () => {
     if (this.state.username.length > 5 &&
-       this.state.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)) {
+       this.state.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/)) {
       this.setState({
         postPageCounter: "dsgsdfg"
       })
