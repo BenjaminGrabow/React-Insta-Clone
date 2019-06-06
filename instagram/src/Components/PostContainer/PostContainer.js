@@ -14,7 +14,7 @@ const Div = styled.div`
   }
   
   section img {
-    width: 20%;
+    width: 15%;
     height: 3rem;
     border-radius: 50%;
   }

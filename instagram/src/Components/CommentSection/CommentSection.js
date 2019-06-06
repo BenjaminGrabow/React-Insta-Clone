@@ -8,8 +8,9 @@ display: flex;
 flex-direction: column;
 
 p {
-  border: .1rem solid black;
-  background-color: lightgrey;
+  border: .05rem solid black;
+  border-radius: 2rem;
+  background-color: #eeeeee;
 }
 input {
   width: 100%;
