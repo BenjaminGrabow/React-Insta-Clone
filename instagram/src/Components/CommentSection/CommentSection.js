@@ -7,6 +7,10 @@ const Div = styled.div`
 display: flex;
 flex-direction: column;
 
+input {
+  width: 100%;
+}
+
 `;
 
 class CommentSection extends Component {
