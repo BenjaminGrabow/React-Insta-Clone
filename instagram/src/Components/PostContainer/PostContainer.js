@@ -1,15 +1,24 @@
 import React from 'react';
-import '../../App.css';
 import CommentSection from '../CommentSection/CommentSection';
 import pt from 'prop-types';
+import styled from 'styled-components'
+
+const Div = styled.div`
+border: .1rem solid lightgrey;
+  margin: 1rem;
+
+  section
+
+
+`;
 
 const PostContainer = props => {
   return (
-    <div className="post-container">
-      <div className="post-top">
+    <Div>
+      <section className="post-top">
         <img src={props.dummyData.thumbnailUrl} alt="Thumbnail" className="thumbnail" />
         <p className="username">{props.dummyData.username}</p>
-      </div>
+      </section>
       <img src={props.dummyData.imageUrl} alt="Post" className="post-img" />
       <div className="icons">
         <div className="left-icons">
@@ -22,7 +31,7 @@ const PostContainer = props => {
       </div>
       <p>{props.dummyData.likes} likes</p>
       <CommentSection comments={props.dummyData.comments} />  
-    </div>
+    </Div>
   )
 }
 

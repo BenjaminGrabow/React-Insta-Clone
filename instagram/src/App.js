@@ -1,9 +1,17 @@
 import React from 'react';
-import './App.css';
 import dummyData from './dummy-data';
 import withAuthenticate from './Components/Authentication/withAuthenticate';
 import PostPage from './Components/PostPage/PostPage';
 import LoginPage from './Components/LoginPage/LoginPage';
+import styled from 'styled-components';
+
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family  : entypo;
+`;
+
 
 
 const ComponentFromWithAuthenticate = withAuthenticate(LoginPage, PostPage);
@@ -90,7 +98,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="app">
+      <Div>
         <ComponentFromWithAuthenticate
           searcherValue={this.state.searchInput}
           showTheSearchResult={this.showSearchResult}
@@ -102,7 +110,7 @@ class App extends React.Component {
           toPostpage={this.goToPostPage}
           counter={this.state.postPageCounter}
         />
-      </div>
+      </Div>
     );
   }
 }
