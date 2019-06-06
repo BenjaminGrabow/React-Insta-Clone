@@ -1,24 +1,5 @@
 @import url(http://weloveiconfonts.com/api/?family=entypo);
 
-.post-container {
-  border: .1rem solid lightgrey;
-  margin: 1rem;
-}
-
-.post-top {
-  display: flex;
-}
-
-.thumbnail {
-  width: 10%;
-  height: 3rem;
-  border-radius: 50%;
-}
-
-.username {
-  margin: 1rem;
-}
-
 .post-img {
   height: 20rem;
   width: 100%;
