@@ -7,6 +7,10 @@ const Div = styled.div`
 display: flex;
 flex-direction: column;
 
+p {
+  border: .1rem solid black;
+  background-color: lightgrey;
+}
 input {
   width: 100%;
 }

@@ -13,13 +13,14 @@ const Header = styled.header`
   }
 
   span {
-        border-right: 0.1rem solid black;
-         padding-right: 1rem;
+          margin: 1.3rem;
   }
 
   img {
         width: 80%;
-        height: 2rem;
+        height: 100%;
+        border-left: 0.1rem solid black;
+        
   }
 
   i {

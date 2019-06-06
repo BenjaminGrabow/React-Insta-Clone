@@ -4,6 +4,7 @@ import withAuthenticate from './Components/Authentication/withAuthenticate';
 import PostPage from './Components/PostPage/PostPage';
 import LoginPage from './Components/LoginPage/LoginPage';
 import styled from 'styled-components';
+import './App.css';
 
 const Div = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ class App extends React.Component {
       searchInput: "",
       username: "",
       password: "",
-      postPageCounter: "",
+      loggedIn: "no",
     }
   }
 
@@ -35,8 +36,8 @@ class App extends React.Component {
       password: JSON.parse(localStorage.getItem('password'))
     })
 
-    localStorage.getItem('postPageCounter') && this.setState({
-      postPageCounter: JSON.parse(localStorage.getItem('postPageCounter'))
+    localStorage.getItem('loggedIn') && this.setState({
+      loggedIn: JSON.parse(localStorage.getItem('loggedIn'))
     })
   };
 
@@ -82,7 +83,7 @@ class App extends React.Component {
     if (this.state.username.length > 5 &&
        this.state.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/)) {
       this.setState({
-        postPageCounter: "dsgsdfg"
+        loggedIn: "yes"
       })
     }
   }
@@ -92,7 +93,7 @@ class App extends React.Component {
 
     localStorage.setItem('password', JSON.stringify(nextState.password));
 
-    localStorage.setItem('postPageCounter', JSON.stringify(nextState.postPageCounter));
+    localStorage.setItem('loggedIn', JSON.stringify(nextState.loggedIn));
   }
 
   render() {
@@ -107,7 +108,7 @@ class App extends React.Component {
           thePassword={event => this.changePassword(event)}
           theUsername={event => this.changeUsername(event)}
           toPostpage={this.goToPostPage}
-          counter={this.state.postPageCounter}
+          loggedIn={this.state.loggedIn}
         />
       </Div>
     );
