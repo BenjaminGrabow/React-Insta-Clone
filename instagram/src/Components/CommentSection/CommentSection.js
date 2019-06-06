@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import uuid from "uuid";
-import '../../App.css';
 import pt from 'prop-types';
+import styled from 'styled-components';
+
+const Div = styled.div`
+display: flex;
+flex-direction: column;
+
+`;
 
 class CommentSection extends Component {
         constructor(props) {
@@ -49,7 +55,7 @@ class CommentSection extends Component {
 
         render() {
                 return (
-                        <div>
+                        <Div>
                                 {this.state.comments.map(comment =>
                                         <p key={uuid()}
                                                 id={uuid()}
@@ -68,7 +74,7 @@ class CommentSection extends Component {
                                         value={this.state.addCommentInput}
                                 >
                                 </input>
-                        </div>
+                        </Div>
                 )
         }
 }
