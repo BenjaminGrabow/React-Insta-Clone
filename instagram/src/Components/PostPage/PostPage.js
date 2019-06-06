@@ -2,7 +2,6 @@ import React from 'react';
 import PostContainer from '../PostContainer/PostContainer';
 import SearchBar from '../SearchBar/SearchBar';
 import uuid from "uuid";
-import '../../App.css';
 
 const PostPage = (props) => {
         return (
