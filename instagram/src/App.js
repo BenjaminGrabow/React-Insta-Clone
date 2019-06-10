@@ -1,9 +1,19 @@
 import React from 'react';
-import './App.css';
 import dummyData from './dummy-data';
-import PostContainer from './Components/PostContainer/PostContainer';
-import SearchBar from './Components/SearchBar/SearchBar';
-import uuid from "uuid";
+import withAuthenticate from './Components/Authentication/withAuthenticate';
+import PostPage from './Components/PostPage/PostPage';
+import LoginPage from './Components/LoginPage/LoginPage';
+import styled from 'styled-components';
+import './App.css';
+
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family  : entypo;
+`;
+
+const ComponentFromWithAuthenticate = withAuthenticate(LoginPage, PostPage);
 
 class App extends React.Component {
   constructor() {
@@ -11,12 +21,23 @@ class App extends React.Component {
     this.state = {
       instaData: dummyData,
       searchInput: "",
+      username: "",
+      password: "",
+      loggedIn: "no",
     }
   }
 
   componentWillMount() {
-    localStorage.getItem('instaData') && this.setState({
-      instaData: JSON.parse(localStorage.getItem('instaData'))
+    localStorage.getItem('username') && this.setState({
+      username: JSON.parse(localStorage.getItem('username'))
+    })
+
+    localStorage.getItem('password') && this.setState({
+      password: JSON.parse(localStorage.getItem('password'))
+    })
+
+    localStorage.getItem('loggedIn') && this.setState({
+      loggedIn: JSON.parse(localStorage.getItem('loggedIn'))
     })
   };
 
@@ -50,24 +71,46 @@ class App extends React.Component {
     })
   };
 
+  changePassword = (event) => {
+    this.setState({ password: event.target.value })
+  }
+
+  changeUsername = (event) => {
+    this.setState({ username: event.target.value })
+  }
+
+  goToPostPage = () => {
+    if (this.state.username.length > 5 &&
+       this.state.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/)) {
+      this.setState({
+        loggedIn: "yes"
+      })
+    }
+  }
+
   componentWillUpdate(nextProps, nextState) {
-    localStorage.setItem('instaData', JSON.stringify(nextState.instaData));
+    localStorage.setItem('username', JSON.stringify(nextState.username));
+
+    localStorage.setItem('password', JSON.stringify(nextState.password));
+
+    localStorage.setItem('loggedIn', JSON.stringify(nextState.loggedIn));
   }
 
   render() {
     return (
-      <div className="app">
-        <SearchBar
-          searchValue={this.state.searchInput}
-          showSearch={this.showSearchResult}
-          changeSearchInput={this.changeSeachResult} />
-        {this.state.instaData.map(data =>
-          <PostContainer dummyData={data}
-            key={uuid()}
-            handleLike={this.makeLike}
-          />
-        )}
-      </div>
+      <Div>
+        <ComponentFromWithAuthenticate
+          searcherValue={this.state.searchInput}
+          showTheSearchResult={this.showSearchResult}
+          changeTheSeachResult={this.changeSeachResult}
+          theData={this.state.instaData}
+          makeALike={this.makeLike}
+          thePassword={event => this.changePassword(event)}
+          theUsername={event => this.changeUsername(event)}
+          toPostpage={this.goToPostPage}
+          loggedIn={this.state.loggedIn}
+        />
+      </Div>
     );
   }
 }
